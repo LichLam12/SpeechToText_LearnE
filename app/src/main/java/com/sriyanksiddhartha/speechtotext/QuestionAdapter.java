@@ -52,8 +52,10 @@ public class QuestionAdapter extends BaseAdapter {
         view = inflater.inflate(myLayout,null);
 
         //Anh xa va gan gia tri vao (de lat sau cho giao dien cua tung dong vao activity_main.xml)
-        ImageView img_foodImage =(ImageView) view.findViewById(R.id.img_hulagirl);
-        img_foodImage.setBackgroundResource(R.drawable.hulagirl48);
+        ImageView img_foodImage =(ImageView) view.findViewById(R.id.img_who);
+        img_foodImage.setImageResource(arrayQuestion.get(i).quesImage);
+
+
 
         TextView txt_foodPrice =(TextView) view.findViewById(R.id.txt_question);
         //Int + String = String, day la cach lam ngan hon String.valueOf()

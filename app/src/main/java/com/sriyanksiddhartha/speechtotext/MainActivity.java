@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
 	private TextView txvResult;
 	private ListView lstViewConversation;
 	private QuestionAdapter adapter;
-	ArrayList<Question> arrayQuestion;
-	ArrayList<Question> arrayQues_temp;
+	public ArrayList<Question> arrayQuestion;
+	public ArrayList<Question> arrayQues_temp;
 	TextView txt_Timer;
 
 	@Override
@@ -39,15 +39,15 @@ public class MainActivity extends AppCompatActivity {
 		arrayQuestion = new ArrayList<Question>();
 		arrayQues_temp = new ArrayList<Question>();
 
-		arrayQues_temp.add(new Question("Hello! Nice to meet you!"));
-		arrayQues_temp.add(new Question("What's your name?"));
-		arrayQues_temp.add(new Question("How old are you?"));
-		arrayQues_temp.add(new Question("Are you student or worker?"));
-		arrayQues_temp.add(new Question("What's your major?"));
-		arrayQues_temp.add(new Question("Where do you study/work?"));
-		arrayQues_temp.add(new Question("What's your hobbies?"));
-		arrayQues_temp.add(new Question("What's your dream?"));
-		arrayQues_temp.add(new Question("How many people are there in your family?"));
+		arrayQues_temp.add(new Question("Hello! Nice to meet you!",R.drawable.student48));
+		arrayQues_temp.add(new Question("What's your name?",R.drawable.hulagirl48));
+		arrayQues_temp.add(new Question("How old are you?",R.drawable.hulagirl48));
+		arrayQues_temp.add(new Question("Are you student or worker?",R.drawable.hulagirl48));
+		arrayQues_temp.add(new Question("What's your major?",R.drawable.hulagirl48));
+		arrayQues_temp.add(new Question("Where do you study/work?",R.drawable.hulagirl48));
+		arrayQues_temp.add(new Question("What's your hobbies?",R.drawable.hulagirl48));
+		arrayQues_temp.add(new Question("What's your dream?",R.drawable.hulagirl48));
+		arrayQues_temp.add(new Question("How many people are there in your family?",R.drawable.hulagirl48));
 
 		adapter =new QuestionAdapter(
 				MainActivity.this,
@@ -57,15 +57,39 @@ public class MainActivity extends AppCompatActivity {
 
 		lstViewConversation.setAdapter(adapter);
 		Set_AutoTime();
+        StartCountTime();
 
-		lStartTime = SystemClock.uptimeMillis();
-		handler.postDelayed(runnable, 0);
 
 	}
+
+	private void StartCountTime(){
+        if(isRun)
+            return;
+        isRun = true;
+        lStartTime = SystemClock.uptimeMillis();
+        handler.postDelayed(runnable, 0);
+    }
+
+    private void StopCountTime(){
+        if(!isRun)
+            return;
+        isRun = false;
+        lPauseTime = 0;
+        handler.removeCallbacks(runnable);
+    }
+
+    private void PauseCountTime(){
+        if(!isRun)
+            return;
+        isRun = false;
+        lPauseTime += lSystemTime;
+        handler.removeCallbacks(runnable);
+    }
 
 	//Diem nguoc thoi gian
 	long lStartTime, lPauseTime, lSystemTime = 0L;
 	Handler handler = new Handler();
+    boolean isRun;
 	Runnable runnable = new Runnable() {
 	@Override
 	public void run() {
@@ -74,7 +98,14 @@ public class MainActivity extends AppCompatActivity {
 		long secs = (long)(lUpdateTime/1000);
 		secs = secs %60;
 		long milliseconds = (long)(lUpdateTime%1000);
-		txt_Timer.setText(String.format("%02d",secs) + ":" + String.format("%03d",milliseconds));
+		if(secs==12)
+		{
+			isRun = false;
+			lPauseTime = 0;
+			handler.removeCallbacks(runnable);
+			return;
+		}
+		txt_Timer.setText(String.format("%02d",secs) + ":" + String.format("%02d",milliseconds));
 		handler.postDelayed(this,0);
 	}};
 
@@ -83,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
 		if(count < arrayQues_temp.size()){
 			arrayQuestion.add(arrayQues_temp.get(count));
 			adapter.notifyDataSetChanged();
+			StartCountTime();
+			count++;
 		}
 	}
 
@@ -92,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 			@Override    public void handleMessage(Message msg) {
 				// Chèn method có chứa các đối tượng UI vào đây
 				ShowNewQues();
-				count++;
+				getSpeechInput();
 			}
 		};
 
@@ -112,10 +145,23 @@ public class MainActivity extends AppCompatActivity {
 			{
 				handler.sendEmptyMessage(0);
 			}
-		}, 0, 10, TimeUnit.SECONDS);
+		}, 0, 15, TimeUnit.SECONDS);
 	}
 
 	public void getSpeechInput(View view) {
+
+		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+		if (intent.resolveActivity(getPackageManager()) != null) {
+			startActivityForResult(intent, 10);
+		} else {
+			Toast.makeText(this, "Your Device Don't Support Speech Input", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	public void getSpeechInput() {
 
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -136,7 +182,15 @@ public class MainActivity extends AppCompatActivity {
 			case 10:
 				if (resultCode == RESULT_OK && data != null) {
 					ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-					txvResult.setText(result.get(0));
+					//txvResult.setText(result.get(0));
+
+					if(count <= arrayQues_temp.size()){
+						arrayQuestion.add(new Question(result.get(0),R.drawable.student48));
+						adapter.notifyDataSetChanged();
+						//StartCountTime();
+						//count++;
+					}
+
 				}
 				break;
 		}

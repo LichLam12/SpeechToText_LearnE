@@ -8,7 +8,6 @@ public class Question {
     public int quesImage;
     public String quesContent;
 
-
     public Question(String quesContent, int quesImage) {
         this.quesImage = quesImage;
         this.quesContent = quesContent;
@@ -17,4 +16,5 @@ public class Question {
     public Question(String quesContent) {
         this.quesContent = quesContent;
     }
+
 }

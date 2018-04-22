@@ -7,7 +7,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/img_hulagirl"
+        android:id="@+id/img_who"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentLeft="true"
@@ -20,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_toEndOf="@+id/img_hulagirl"
-        android:layout_toRightOf="@+id/img_hulagirl"
+        android:layout_toEndOf="@+id/img_who"
+        android:layout_toRightOf="@+id/img_who"
         android:text="Hello! Nice to meet you!"
         android:textSize="19dp"
         android:textColor="@color/colorBlack"
