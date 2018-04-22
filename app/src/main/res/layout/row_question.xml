@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_margin="16dp"
+    android:padding="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/img_hulagirl"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/hulagirl48" />
+
+    <TextView
+        android:id="@+id/txt_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@+id/img_hulagirl"
+        android:layout_toRightOf="@+id/img_hulagirl"
+        android:text="Hello! Nice to meet you!"
+        android:textSize="19dp"
+        android:textColor="@color/colorBlack"
+        android:background="@drawable/duongvien_goctron"
+        android:padding="8dp"/>
+
+</RelativeLayout>
