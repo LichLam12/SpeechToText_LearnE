@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
 		lstViewConversation.setAdapter(adapter);
 		Set_AutoTime();
-        StartCountTime();
+		if(count <= arrayQues_temp.size())
+        	StartCountTime();
 
 
 	}
@@ -189,6 +190,8 @@ public class MainActivity extends AppCompatActivity {
 						adapter.notifyDataSetChanged();
 						//StartCountTime();
 						//count++;
+					}else {
+						StopCountTime();
 					}
 
 				}
