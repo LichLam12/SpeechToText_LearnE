@@ -1,5 +1,6 @@
 package com.sriyanksiddhartha.speechtotext;
-
+import android.speech.tts.TextToSpeech;
+import android.support.v7.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.os.SystemClock;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
 	private TextView txvResult;
 	private ListView lstViewConversation;
+	TextToSpeech textToSpeech;
+	int result;
+	ImageView imgViewReload;
+
 	private QuestionAdapter adapter;
 	public ArrayList<Question> arrayQuestion;
 	public ArrayList<Question> arrayQues_temp;
@@ -34,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		txt_Timer = (TextView) findViewById(R.id.txt_Timer);
+		imgViewReload = (ImageView) findViewById(R.id.imgViewReload);
 		lstViewConversation = (ListView) findViewById(R.id.lstViewConversation);
+
 
 		arrayQuestion = new ArrayList<Question>();
 		arrayQues_temp = new ArrayList<Question>();
@@ -58,7 +66,12 @@ public class MainActivity extends AppCompatActivity {
 		lstViewConversation.setAdapter(adapter);
 		Set_AutoTime();
 		if(count <= arrayQues_temp.size())
-        	StartCountTime();
+		{
+			StartCountTime();
+		}
+		else{
+			StopCountTime();
+		}
 
 
 	}
@@ -99,20 +112,36 @@ public class MainActivity extends AppCompatActivity {
 		long secs = (long)(lUpdateTime/1000);
 		secs = secs %60;
 		long milliseconds = (long)(lUpdateTime%1000);
-		if(secs==12)
+		if(secs==11)
 		{
 			isRun = false;
 			lPauseTime = 0;
 			handler.removeCallbacks(runnable);
 			return;
 		}
-		txt_Timer.setText(String.format("%02d",secs) + ":" + String.format("%02d",milliseconds));
+		txt_Timer.setText(String.format("%02d",secs));
+
+		//txt_Timer.setText(String.format("%02d",secs) + ":" + String.format("%02d",milliseconds));
 		handler.postDelayed(this,0);
 	}};
 
 	int count=1;
 	private void ShowNewQues(){
 		if(count < arrayQues_temp.size()){
+
+			textToSpeech = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
+				@Override
+				public void onInit(int i) {
+					if(i==TextToSpeech.SUCCESS){
+						result=textToSpeech.setLanguage(Locale.UK);
+						textToSpeech.speak(arrayQues_temp.get(count-1).quesContent,TextToSpeech.QUEUE_FLUSH,null);
+					}
+					else{
+						Toast.makeText(getApplicationContext(), "Your Device Don't Support Speech Input", Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
+
 			arrayQuestion.add(arrayQues_temp.get(count));
 			adapter.notifyDataSetChanged();
 			StartCountTime();
@@ -120,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
-	//Cach 10s goi ShowNewQues() de them question moi 1 lan
+	//Cach 12s goi ShowNewQues() de them question moi 1 lan
 	private void Set_AutoTime(){
 		final Handler handler = new Handler() {
 			@Override    public void handleMessage(Message msg) {
@@ -146,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 			{
 				handler.sendEmptyMessage(0);
 			}
-		}, 0, 15, TimeUnit.SECONDS);
+		}, 0, 12, TimeUnit.SECONDS);
 	}
 
 	public void getSpeechInput(View view) {
@@ -197,5 +226,11 @@ public class MainActivity extends AppCompatActivity {
 				}
 				break;
 		}
+	}
+
+	public void reload(){
+		arrayQuestion.clear();
+		count=1;
+		adapter.notifyDataSetChanged();
 	}
 }

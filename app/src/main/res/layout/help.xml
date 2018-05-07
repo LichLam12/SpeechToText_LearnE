@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorRed">
+    <ImageView
+        android:background="@drawable/back"
+        android:id="@+id/btnSpeak"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+       android:layout_marginLeft="10dp"
+        android:layout_marginTop="17dp"
+        android:onClick="back" />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="28dp"
+            android:paddingTop="10dp"
+            android:text="Help"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="1. Chat với robot thông minh Mike:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Bạn sẽ được chat vơi robot thông minh Mike như chat với người nước ngoài thật. Hãy chat thật nhiều để robot ngay càng thông minh hơn"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="2. Thu âm lời nói của bạn:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Khi đang chat bạn có thể thu âm lời nói của chính mình để chuyển thành tin nhắn. Nếu máy bạn không sử dụng được chức năng này bạn hãy lên CH play tải ứng dụng của google"/>
+
+    </LinearLayout>.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="3. Dịch trực tiếp câu trả lời:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Khi đang chat nếu bạn muốn dịch câu bất kì một câu hội thoạin naof bạn chỉ cần nhấn vào câu đó một thông báo có chứa lời dịch sang tiếng Việt được hiện lên màn hình."/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="4. Phát âm trực tiếp câu trả lời:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Khi đang chat nếu bạn muôn nghe câu hội thoại đó được phát âm như thế nào bạn chỉ cần nhấn giữ vào câu đó . Nếu điện thoại của bạn không đọc được bạn hãy lên CH play cài ứng dụng Pico TTS rồi vào cài đặt của máy chọn ngôn ngữ văn bản thành giọng nói rồi check vào Chuyển văn bản thanh giọng nói trong phần công cụ ưa thích"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="5. Chia sẻ đoạn hội thoại:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Bạn có thể chia sẻ đoạn hội thoại bằng cách click vào nút chụp màn hình trên thanh toobar. Sau đó hãy chia sẻ với mọi người nhé!"></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="6. Tra từ điển online:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Bạn có thể tra từ tiếng Việt sang tiếng Anh hoặc ngược lại bằng cách nhấn vào nút Translate trong menu "/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="7. Nghe nhạc US/UK có lời:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Cùng giải trí với những bài hát US/UK có lời bằng cách nhấn vào nút Music trong menu. Các bài hát sẽ liên tục được cập nhật mới nhất"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="Cảm ơn các bạn đã sử dụng app. Nếu bạn thấy app của mình hay vui lòng rate 5 sao nhé !"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>
