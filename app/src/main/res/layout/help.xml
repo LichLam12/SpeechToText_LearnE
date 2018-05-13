@@ -11,30 +11,7 @@
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorRed">
-    <ImageView
-        android:background="@drawable/back"
-        android:id="@+id/btnSpeak"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-       android:layout_marginLeft="10dp"
-        android:layout_marginTop="17dp"
-        android:onClick="back" />
-        <TextView
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="28dp"
-            android:paddingTop="10dp"
-            android:text="Help"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorBlack"/>
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

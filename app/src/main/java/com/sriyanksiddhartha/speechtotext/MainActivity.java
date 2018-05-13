@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 		long secs = (long)(lUpdateTime/1000);
 		secs = secs %60;
 		long milliseconds = (long)(lUpdateTime%1000);
-		if(secs==11)
+		if(secs==12)
 		{
 			isRun = false;
 			lPauseTime = 0;
