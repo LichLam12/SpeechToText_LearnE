@@ -1,7 +1,9 @@
 package com.sriyanksiddhartha.speechtotext;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -12,13 +14,14 @@ public class ViewContentActivity extends AppCompatActivity {
     private ListView lstViewContent;
     private QuestionAdapter adapter;
     public ArrayList<Question> arrayQuestion;
+    ImageView imgViewBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewcontent);
         lstViewContent = (ListView) findViewById(R.id.lstViewContent);
-
 
         arrayQuestion = new ArrayList<Question>();
 
@@ -48,5 +51,15 @@ public class ViewContentActivity extends AppCompatActivity {
 
         lstViewContent.setAdapter(adapter);
 
+        imgViewBack = (ImageView) findViewById(R.id.imgViewBack);
+
+        //Tro ve trang chu, nut back
+        imgViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ViewContentActivity.this, FirstMain.class));
+                overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
+            }
+        });
     }
 }

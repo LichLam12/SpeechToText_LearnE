@@ -1,6 +1,7 @@
 package com.sriyanksiddhartha.speechtotext;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,9 @@ public class QuestionAdapter extends BaseAdapter {
         TextView txt_foodPrice =(TextView) view.findViewById(R.id.txt_question);
         //Int + String = String, day la cach lam ngan hon String.valueOf()
         txt_foodPrice.setText(arrayQuestion.get(i).quesContent);
+        if(arrayQuestion.get(i).color != 0) {
+            txt_foodPrice.setTextColor(arrayQuestion.get(i).color);
+        }
 
         return view;
     }

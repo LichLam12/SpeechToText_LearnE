@@ -39,7 +39,7 @@
 						android:textSize="20dp"
 
 						android:textColor="@color/colorWhite"
-						android:text="Practise No Answer"/>
+						android:text="Practise Available Answer"/>
 				</LinearLayout>
 
 

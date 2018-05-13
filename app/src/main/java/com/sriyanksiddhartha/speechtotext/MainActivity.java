@@ -29,20 +29,35 @@ public class MainActivity extends AppCompatActivity {
 	TextToSpeech textToSpeech;
 	int result;
 	ImageView imgViewReload;
-
+	public static final int a=0;
 	private QuestionAdapter adapter;
 	public ArrayList<Question> arrayQuestion;
 	public ArrayList<Question> arrayQues_temp;
 	TextView txt_Timer;
 
+	String time_run_temp;
+	int time_run;
+
+	ImageView imgViewBack; //nut back tro lai trang chu
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		imgViewBack = (ImageView) findViewById(R.id.imgViewBack);
 		txt_Timer = (TextView) findViewById(R.id.txt_Timer);
 		imgViewReload = (ImageView) findViewById(R.id.imgViewReload);
 		lstViewConversation = (ListView) findViewById(R.id.lstViewConversation);
 
+		Intent intent = getIntent();
+		time_run_temp=intent.getStringExtra(FirstMain.TIME_RUN);
+		if(Integer.parseInt(time_run_temp) == 5){
+			time_run=5;
+		}
+		else if(Integer.parseInt(time_run_temp) == 10){
+			time_run=10;
+		}
 
 		arrayQuestion = new ArrayList<Question>();
 		arrayQues_temp = new ArrayList<Question>();
@@ -73,7 +88,14 @@ public class MainActivity extends AppCompatActivity {
 			StopCountTime();
 		}
 
-
+		//Tro ve trang chu, nut back
+		imgViewBack.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(MainActivity.this, FirstMain.class));
+				overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
+			}
+		});
 	}
 
 	private void StartCountTime(){
@@ -112,14 +134,14 @@ public class MainActivity extends AppCompatActivity {
 		long secs = (long)(lUpdateTime/1000);
 		secs = secs %60;
 		long milliseconds = (long)(lUpdateTime%1000);
-		if(secs==12)
+		if(secs==time_run)
 		{
 			isRun = false;
 			lPauseTime = 0;
 			handler.removeCallbacks(runnable);
 			return;
 		}
-		txt_Timer.setText(String.format("%02d",secs));
+		txt_Timer.setText(String.format("%02d",secs)+":"+ String.format("%02d",milliseconds));
 
 		//txt_Timer.setText(String.format("%02d",secs) + ":" + String.format("%02d",milliseconds));
 		handler.postDelayed(this,0);
@@ -175,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
 			{
 				handler.sendEmptyMessage(0);
 			}
-		}, 0, 12, TimeUnit.SECONDS);
+		}, 0, time_run+1, TimeUnit.SECONDS);
 	}
 
 	public void getSpeechInput(View view) {
